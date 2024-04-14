@@ -1,0 +1,95 @@
+const { list_users } = require('../DataList/dataList')
+const Usuario = require('../objects/Usuario')
+
+function SignUp(req, res) {
+
+    try {
+        const { carnet, nombre, edad, facultad, password } = req.body
+
+        const usuarioExiste = list_users.find(x_user => x_user.carnet === carnet)
+
+        if (usuarioExiste) {
+            return res.json({ error: 'El carnet ya está registrado.' });
+        }
+
+        const newUser = new Usuario(carnet, nombre, edad, facultad, password)
+        list_users.push(newUser)  // Agregar el nuevo usuario a la lista
+
+        // Enviar una respuesta como json con el mensaje de confirmación
+        return res.json({ mensaje: 'Usuario fue agregado correctamente :D' });
+        
+
+    } catch (error) {
+        console.log(error)
+        return res.json(
+            {
+            error: "Hubo un error al registrar el usuario"
+             }
+        )
+    }
+}
+
+function GetAllUsers(req, res) {
+    try {
+        res.json(
+            {
+                usuarios: list_users
+            }
+        )
+    } catch (error) {
+        console.log(error)
+        return res.json(
+            {
+            error: "Hubo un error al obtener los usuarios"
+             }
+        )
+    }
+}
+
+function Login(req, res){
+    try {
+        const carnet1 = req.body.carnet
+        const password1 = req.body.password
+        const usuarioEncontrado = list_users.find(x_user => x_user.carnet === carnet1 && x_user.password === password1)
+        
+        if (usuarioEncontrado) {
+
+            const userFind={
+                carnet: usuarioEncontrado.carnet,
+                nombre:usuarioEncontrado.nombre,
+                edad:usuarioEncontrado.edad,
+                facultad:usuarioEncontrado.facultad
+            }
+
+            res.json(
+                {
+                    encontrado:true,
+                    datos:userFind
+                }
+                
+                )
+
+
+            return res.json({ mensaje: 'Usuario logueado correctamente :D' });
+        } else {
+            return res.json(
+                { 
+                    encontrado:false,
+                    error: 'Usuario o contraseña incorrecta' 
+                }
+                )
+        }
+        
+    } catch (error) {
+        console.log(error)
+        return res.json(
+            {
+            error: "Hubo un error en el login"
+             }
+        )
+    }
+}
+
+module.exports= {
+    SignUp, GetAllUsers, Login
+}
