@@ -1,8 +1,8 @@
 const express = require('express')
 
-const router = express.Router() // Creación de un  Express router
+const router = express.Router() 
 
-//Importamos todos los "controllers" que creamos
+//Importando todas uestras clases que estan en la carpeta controllers
 const {hellowWorld} = require('../controllers/holamundo')
 const {SignUp, GetAllUsers, Login}=require('../controllers/accesos')
 const {UpdateUser}=require('../controllers/Update')
@@ -22,4 +22,4 @@ router.put('/update', UpdateUser)
 //Delete
 router.delete('/delete', deleteUser)
 
-module.exports= router //Exportamos el router
+module.exports= router 

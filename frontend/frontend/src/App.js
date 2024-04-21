@@ -1,12 +1,12 @@
 
 import './App.css';
-import Login from './components/Login';
+import Router from './components/Router/router';
 
 function App() {
   return (
     <div>
-      <Login>
-        </Login>
+      <Router>
+        </Router>
     </div>
   );
 }
