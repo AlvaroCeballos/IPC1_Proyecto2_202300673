@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './Styles/Styles.css'
 import { useCookies } from 'react-cookie';
 import { Modal } from "react-bootstrap";
+import NavBarAdmin from "./NavBarAdmin";
 
 
 function Administrador() {
@@ -10,6 +11,7 @@ function Administrador() {
     const [listaUser, setlistaUser] = useState([])
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null)
     const [actualizarTabla, setActualizarTabla] = useState(false)
+    const [selectedFile, setSelectedFile] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:5000/GetAllUsers`, {
@@ -60,9 +62,13 @@ function Administrador() {
             .catch((error) => console.error(error))
 
 
-
+    
 
     }
+
+    const handleFileChange=(event)=>{
+        setSelectedFile(event.target.files[0])
+     }
 
     const verInfo=(user)=>{
         setUsuarioSeleccionado(user)
@@ -71,13 +77,48 @@ function Administrador() {
     const cerrarVentanaInfo=()=>{
         setUsuarioSeleccionado(null)
     }
+
+    const cargarDatos= async ()=>{
+        if(!selectedFile){
+            alert("Debe seleccionar un archivo JSON")
+            return
+        }
+
+        const jsonData= await selectedFile.text()
+        console.log(jsonData)
+        const userArray=JSON.parse(jsonData)
+
+
+
+        fetch(`http://localhost:5000/CargaMasiva`, {
+            method: "POST", // metodo para enviar
+            body: JSON.stringify(userArray),
+            headers: {
+                "Content-Type": "application/json", 
+            },
+        })
+            .then((response) => response.json())
+            .then((res) => {
+                if (res.mensaje) {
+                    alert(res.mensaje)
+                  setActualizarTabla(!actualizarTabla)
+                } else {
+                    alert(res.error)
+                }
+
+            })
+            .catch((error) => console.error(error))
+    }
+        
+
     return (
+
+        <div>
+            <NavBarAdmin></NavBarAdmin>
         <div className="admin-background">
-            
-
-
-            <h1 style={{ color: "white" }}>{user.carnet}</h1>
-            <h1 style={{ color: "white" }}>{user.nombre}</h1>
+        <input type="file" onChange={handleFileChange} accept=".json"/>
+    
+        <button onClick={cargarDatos} className="btn btn-primary">Cargar Archivo JSON</button>
             <div className="centrar-tabla">
             <div className="table-container">
             <table className="table table-bordered text-center tablaUsers">
@@ -102,6 +143,7 @@ function Administrador() {
                                 <button className="btn btn-danger"  onClick={()=>borrarUsuario(user.carnet)}>Eliminar</button>
                             </td>
                         </tr>
+                        
                     ))}
                     
                 </tbody>
@@ -135,7 +177,7 @@ function Administrador() {
 </div>
         </div>
         </div>
-
+        </div>
     )
 
 }

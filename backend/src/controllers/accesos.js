@@ -13,9 +13,9 @@ function SignUp(req, res) {
         }
 
         const newUser = new Usuario(carnet, nombre, edad, facultad, password)
-        list_users.push(newUser)  // Agregar el nuevo usuario a la lista
+        list_users.push(newUser) 
 
-        // Enviar una respuesta como json con el mensaje de confirmación
+   
         return res.json({ mensaje: 'Usuario fue agregado correctamente :D' });
         
 
@@ -24,6 +24,52 @@ function SignUp(req, res) {
         return res.json(
             {
             error: "Hubo un error al registrar el usuario"
+             }
+        )
+    }
+}
+
+
+
+
+function CargaMasiva(req, res) {
+    try {
+        const userArray =req.body
+        console.log(userArray)
+       
+
+        for (const usuarioCM of userArray) {
+            const { carnet, nombre, edad, facultad, password } = usuarioCM
+
+            const usuarioExiste = list_users.find(x_user => x_user.carnet === carnet)
+
+        if (usuarioExiste) {
+            res.json(
+                {
+                    mensaje: "Un usuario o mas con user repetido, solo se agrego 1",
+                  
+                })
+            continue
+        }
+
+        
+
+            const newUser = new Usuario(carnet, nombre, edad, facultad, password)
+            list_users.push(newUser) 
+            
+        }
+         
+        res.json(
+            {
+                mensaje: "Carga masiva user exitosa",
+              
+            }
+        )
+    } catch (error) {
+        console.log(error)
+        return res.json(
+            {
+            error: "Hubo un error al hacer carga masiva user"
              }
         )
     }
@@ -91,5 +137,5 @@ function Login(req, res){
 }
 
 module.exports= {
-    SignUp, GetAllUsers, Login
+    SignUp, GetAllUsers, Login, CargaMasiva
 }

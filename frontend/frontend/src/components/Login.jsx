@@ -15,13 +15,15 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-
-        const dataJson = {
+        if (carnet === 'adminn' && password === '12345') {
+            Navigate('/admin')
+        }else{
+            const dataJson = {
             carnet: carnet,
             password: password
-        }
+            }
 
-        fetch(`http://localhost:5000/login`, {
+            fetch(`http://localhost:5000/login`, {
             method: "POST", // se hace solicitud tipo get
             body: JSON.stringify(dataJson), 
             headers: {
@@ -38,12 +40,17 @@ function Login() {
                     console.log(dataUser)
                alert("Bienvenido "+dataUser.nombre+" "+dataUser.apellido)
                setCookies('usuario', dataUser)
-                Navigate('/admin')
+               
+                Navigate('/menup')
                 }else{
                     alert("Usuario o password incorrectos")
                 }
             })
             .catch((error) => console.error(error))
+
+
+        }
+ 
     
     }
     return (
