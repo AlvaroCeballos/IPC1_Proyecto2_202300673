@@ -4,7 +4,7 @@ const Usuario = require('../objects/Usuario')
 function SignUp(req, res) {
 
     try {
-        const { codigo, nombre, edad, facultad, password } = req.body
+        const { codigo, nombres, apellidos, genero, facultad, carrera, correo, contrasenia } = req.body
 
         const usuarioExiste = list_users.find(x_user => x_user.codigo === codigo)
 
@@ -12,7 +12,7 @@ function SignUp(req, res) {
             return res.json({ error: 'El codigo ya está registrado.' });
         }
 
-        const newUser = new Usuario(codigo, nombre, edad, facultad, password)
+        const newUser = new Usuario(codigo, nombres, apellidos, genero, facultad, carrera, correo, contrasenia)
         list_users.push(newUser) 
 
    
@@ -39,7 +39,7 @@ function CargaMasiva(req, res) {
        
 
         for (const usuarioCM of userArray) {
-            const { codigo, nombre, edad, facultad, password } = usuarioCM
+            const { codigo, nombres, apellidos, genero, facultad, carrera, correo, contrasenia } = usuarioCM
 
             const usuarioExiste = list_users.find(x_user => x_user.codigo === codigo)
 
@@ -54,7 +54,7 @@ function CargaMasiva(req, res) {
 
         
 
-            const newUser = new Usuario(codigo, nombre, edad, facultad, password)
+            const newUser = new Usuario(codigo, nombres, apellidos, genero, facultad, carrera, correo, contrasenia)
             list_users.push(newUser) 
             
         }
@@ -102,9 +102,12 @@ function Login(req, res){
 
             const userFind={
                 codigo: usuarioEncontrado.codigo,
-                nombre:usuarioEncontrado.nombre,
-                edad:usuarioEncontrado.edad,
-                facultad:usuarioEncontrado.facultad
+                nombres:usuarioEncontrado.nombres,
+                apellidos:usuarioEncontrado.apellidos,
+                genero:usuarioEncontrado.genero,
+                facultad:usuarioEncontrado.facultad,
+                carrera:usuarioEncontrado.carrera,
+                correo:usuarioEncontrado.correo, 
             }
 
             res.json(

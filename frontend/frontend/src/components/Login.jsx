@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [codigo, setCarnet] = useState('');
-    const [password, setPassword] = useState('');
+    const [contrasenia, setContrasenia] = useState('');
 
     const [cookies, setCookies] = useCookies(['usuario'])
 
@@ -15,12 +15,12 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        if (codigo === 'adminn' && password === '12345') {
+        if (codigo === 'adminn' && contrasenia === '12345') {
             Navigate('/admin')
         }else{
             const dataJson = {
             codigo: codigo,
-            password: password
+            contrasenia: contrasenia
             }
 
             fetch(`http://localhost:5000/login`, {
@@ -38,12 +38,12 @@ function Login() {
                 if (res.encontrado===true) {
                     const dataUser=res.datos
                     console.log(dataUser)
-               alert("Bienvenido "+dataUser.nombre+" "+dataUser.apellido)
+               alert("Bienvenido "+dataUser.nombres+" "+dataUser.apellidos)
                setCookies('usuario', dataUser)
                
                 Navigate('/menup')
                 }else{
-                    alert("Usuario o password incorrectos")
+                    alert("Usuario o contrasenia incorrectos")
                 }
             })
             .catch((error) => console.error(error))
@@ -72,7 +72,7 @@ function Login() {
                     onChange={(e) => setCarnet(e.target.value)}
                     value={codigo}
                     />
-                    <label htmlFor="floatingInput">codigo</label>
+                    <label htmlFor="floatingInput">Codigo</label>
                 </div>
 
 
@@ -83,8 +83,8 @@ function Login() {
                     className="form-control"
                     id="floatingInput"
                     placeholder="ingrese su codigo para poder hacer login dentro de la USOCIALUSAC"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
+                    onChange={(e) => setContrasenia(e.target.value)}
+                    value={contrasenia}
                     />
                     <label htmlFor="floatingInput">Password</label>
                 </div>

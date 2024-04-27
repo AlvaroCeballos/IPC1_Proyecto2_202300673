@@ -50,8 +50,8 @@ function getPublicaciones(req, res) {
                     descripcion: PublicacionObj.descripcion,
                     imagen: PublicacionObj.imagen,
                     fechaHora: PublicacionObj.fechaHora,
-                    user: usuario.nombre,
-                    karrera: usuario.facultad
+                    user: usuario.nombres,
+                    karrera: usuario.carrera + " (" + usuario.facultad+")"
                    
                 };
 

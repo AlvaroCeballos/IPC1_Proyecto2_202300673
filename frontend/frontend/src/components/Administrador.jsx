@@ -124,10 +124,13 @@ function Administrador() {
             <table className="table table-bordered text-center tablaUsers">
                 <thead>
                     <tr>
-                        <th >codigo</th>
-                        <th >Nombre</th>
-                        <th >Edad</th>
+                      <th >Codigo</th>
+                        <th >Nombres</th>
+                        <th >Apellidos</th>
+                        <th >Genero</th>
                         <th >Facultad</th>
+                        <th >Carrera</th>
+                        <th>Correo</th>
                         <th >Acciones</th>
                     </tr>
                 </thead>
@@ -135,9 +138,12 @@ function Administrador() {
                     {listaUser.map((user) => (
                         <tr key={user.codigo}>
                             <td>{user.codigo}</td>
-                            <td>{user.nombre}</td>
-                            <td>{user.edad}</td>
+                            <td>{user.nombres}</td>
+                            <td>{user.apellidos}</td>
+                            <td>{user.genero}</td>
                             <td>{user.facultad}</td>
+                            <td>{user.carrera}</td>
+                            <td>{user.correo}</td>
                             <td>
                                 <button className="btn btn-primary" onClick={()=>verInfo(user)}>Ver</button>
                                 <button className="btn btn-danger"  onClick={()=>borrarUsuario(user.codigo)}>Eliminar</button>
@@ -157,10 +163,13 @@ function Administrador() {
                     <Modal.Title>Detalles del Usuario</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>codigo: {usuarioSeleccionado.codigo} </p>
-                    <p>Nombre: {usuarioSeleccionado.nombre} </p>
-                    <p>Edad: {usuarioSeleccionado.edad} </p>
+                <p>codigo: {usuarioSeleccionado.codigo} </p>
+                    <p>nombres: {usuarioSeleccionado.nombres} </p>
+                    <p>apellidos: {usuarioSeleccionado.apellidos} </p>
+                    <p>genero: {usuarioSeleccionado.genero} </p>
                     <p>Facultad: {usuarioSeleccionado.facultad} </p>
+                    <p>Carrera: {usuarioSeleccionado.carrera} </p>
+                    <p>Correo: {usuarioSeleccionado.correo} </p>
                 </Modal.Body>
 
                 <Modal.Footer>

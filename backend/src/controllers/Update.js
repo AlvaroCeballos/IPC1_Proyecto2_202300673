@@ -2,7 +2,7 @@ const { list_users } = require('../DataList/dataList')
 
 function UpdateUser(req, res) {
     try {
-        const { codigo, nombre, edad, facultad, password } = req.body
+        const { codigo, nombres, apellidos, genero, facultad, carrera, correo, contrasenia } = req.body
 
         const usuarioIndex = list_users.findIndex(x_user => x_user.codigo === codigo)
         
@@ -11,10 +11,13 @@ function UpdateUser(req, res) {
             const usuarioActualizar= list_users[usuarioIndex]
 
           
-            usuarioActualizar.nombre=nombre
-            usuarioActualizar.edad=edad
+            usuarioActualizar.nombres=nombres
+            usuarioActualizar.apellidos=apellidos
+            usuarioActualizar.genero=genero
             usuarioActualizar.facultad=facultad
-            usuarioActualizar.password=password
+            usuarioActualizar.carrera=carrera
+            usuarioActualizar.correo=correo
+            usuarioActualizar.contrasenia=contrasenia
 
             res.json(
                 {
