@@ -39,7 +39,7 @@ function Administrador() {
     const borrarUsuario = (carnet_seleccionado) => {
 
         const MyJson = {
-            carnet: carnet_seleccionado
+            codigo: carnet_seleccionado
         }
 
         fetch(`http://localhost:5000/delete`, {
@@ -124,7 +124,7 @@ function Administrador() {
             <table className="table table-bordered text-center tablaUsers">
                 <thead>
                     <tr>
-                        <th >Carnet</th>
+                        <th >codigo</th>
                         <th >Nombre</th>
                         <th >Edad</th>
                         <th >Facultad</th>
@@ -133,14 +133,14 @@ function Administrador() {
                 </thead>
                 <tbody >
                     {listaUser.map((user) => (
-                        <tr key={user.carnet}>
-                            <td>{user.carnet}</td>
+                        <tr key={user.codigo}>
+                            <td>{user.codigo}</td>
                             <td>{user.nombre}</td>
                             <td>{user.edad}</td>
                             <td>{user.facultad}</td>
                             <td>
                                 <button className="btn btn-primary" onClick={()=>verInfo(user)}>Ver</button>
-                                <button className="btn btn-danger"  onClick={()=>borrarUsuario(user.carnet)}>Eliminar</button>
+                                <button className="btn btn-danger"  onClick={()=>borrarUsuario(user.codigo)}>Eliminar</button>
                             </td>
                         </tr>
                         
@@ -157,7 +157,7 @@ function Administrador() {
                     <Modal.Title>Detalles del Usuario</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Carnet: {usuarioSeleccionado.carnet} </p>
+                    <p>codigo: {usuarioSeleccionado.codigo} </p>
                     <p>Nombre: {usuarioSeleccionado.nombre} </p>
                     <p>Edad: {usuarioSeleccionado.edad} </p>
                     <p>Facultad: {usuarioSeleccionado.facultad} </p>
@@ -183,3 +183,4 @@ function Administrador() {
 }
 
 export default Administrador;
+

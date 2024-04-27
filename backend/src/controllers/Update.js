@@ -2,9 +2,9 @@ const { list_users } = require('../DataList/dataList')
 
 function UpdateUser(req, res) {
     try {
-        const { carnet, nombre, edad, facultad, password } = req.body
+        const { codigo, nombre, edad, facultad, password } = req.body
 
-        const usuarioIndex = list_users.findIndex(x_user => x_user.carnet === carnet)
+        const usuarioIndex = list_users.findIndex(x_user => x_user.codigo === codigo)
         
         if (usuarioIndex !== -1) {
            
@@ -44,3 +44,4 @@ function UpdateUser(req, res) {
 module.exports= {
     UpdateUser
 }
+

@@ -34,7 +34,7 @@ function Publicacion() {
         event.preventDefault();
 
         const dataJson = {
-            carnet: datosUser.carnet,
+            codigo: datosUser.codigo,
             descripcion: descripcion,
             imagen: imagen
         }
@@ -101,3 +101,4 @@ function Publicacion() {
 }
 
 export default Publicacion;
+

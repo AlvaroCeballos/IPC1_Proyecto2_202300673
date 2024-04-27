@@ -4,15 +4,15 @@ const Usuario = require('../objects/Usuario')
 function SignUp(req, res) {
 
     try {
-        const { carnet, nombre, edad, facultad, password } = req.body
+        const { codigo, nombre, edad, facultad, password } = req.body
 
-        const usuarioExiste = list_users.find(x_user => x_user.carnet === carnet)
+        const usuarioExiste = list_users.find(x_user => x_user.codigo === codigo)
 
         if (usuarioExiste) {
-            return res.json({ error: 'El carnet ya está registrado.' });
+            return res.json({ error: 'El codigo ya está registrado.' });
         }
 
-        const newUser = new Usuario(carnet, nombre, edad, facultad, password)
+        const newUser = new Usuario(codigo, nombre, edad, facultad, password)
         list_users.push(newUser) 
 
    
@@ -39,9 +39,9 @@ function CargaMasiva(req, res) {
        
 
         for (const usuarioCM of userArray) {
-            const { carnet, nombre, edad, facultad, password } = usuarioCM
+            const { codigo, nombre, edad, facultad, password } = usuarioCM
 
-            const usuarioExiste = list_users.find(x_user => x_user.carnet === carnet)
+            const usuarioExiste = list_users.find(x_user => x_user.codigo === codigo)
 
         if (usuarioExiste) {
             res.json(
@@ -54,7 +54,7 @@ function CargaMasiva(req, res) {
 
         
 
-            const newUser = new Usuario(carnet, nombre, edad, facultad, password)
+            const newUser = new Usuario(codigo, nombre, edad, facultad, password)
             list_users.push(newUser) 
             
         }
@@ -94,14 +94,14 @@ function GetAllUsers(req, res) {
 
 function Login(req, res){
     try {
-        const carnet1 = req.body.carnet
+        const carnet1 = req.body.codigo
         const password1 = req.body.password
-        const usuarioEncontrado = list_users.find(x_user => x_user.carnet === carnet1 && x_user.password === password1)
+        const usuarioEncontrado = list_users.find(x_user => x_user.codigo === carnet1 && x_user.password === password1)
         
         if (usuarioEncontrado) {
 
             const userFind={
-                carnet: usuarioEncontrado.carnet,
+                codigo: usuarioEncontrado.codigo,
                 nombre:usuarioEncontrado.nombre,
                 edad:usuarioEncontrado.edad,
                 facultad:usuarioEncontrado.facultad

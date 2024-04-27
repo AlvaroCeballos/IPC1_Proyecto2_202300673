@@ -6,14 +6,14 @@ var id_publicacion = 0
 
 function nuevaPublicacion(req, res) {
     try{
-        const carnet = req.body.carnet
+        const codigo = req.body.codigo
         const descripcion = req.body.descripcion
         const imagen = req.body.imagen
 
         id_publicacion = id_publicacion + 1
         console.log(id_publicacion)
 
-        const newPost = new Object_Post(id_publicacion, carnet, descripcion, imagen)
+        const newPost = new Object_Post(id_publicacion, codigo, descripcion, imagen)
         list_publicacion.push(newPost)
 
         res.json(
@@ -39,7 +39,8 @@ function getPublicaciones(req, res) {
 
         for (const PublicacionObj of list_publicacion) {
 
-            const usuario = list_users.find(user => user.carnet === PublicacionObj.user);
+            const usuario = list_users.find(user => user.codigo === PublicacionObj.user);
+           
 
 
 
@@ -49,7 +50,9 @@ function getPublicaciones(req, res) {
                     descripcion: PublicacionObj.descripcion,
                     imagen: PublicacionObj.imagen,
                     fechaHora: PublicacionObj.fechaHora,
-                    user: usuario.nombre
+                    user: usuario.nombre,
+                    karrera: usuario.facultad
+                   
                 };
 
                 posts_con_usuario.push(post_con_usuario);
@@ -77,3 +80,15 @@ module.exports= {
     nuevaPublicacion,
     getPublicaciones
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,6 +42,7 @@ function Mp(){
                         <div className="card" key={objeto.id}>
                             <div className="card-header">
                                 <p>Usuario: {objeto.user}</p>
+                                <p>Carrera: {objeto.karrera}</p>
                                 <p>Fecha: {new Date(objeto.fechaHora).toLocaleString()}</p>
                             </div>
                             <div className="card-center-img">

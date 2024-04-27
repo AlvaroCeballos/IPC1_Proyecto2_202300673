@@ -4,7 +4,7 @@ import './Styles/Styles.css'
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const [carnet, setCarnet] = useState('');
+    const [codigo, setCarnet] = useState('');
     const [password, setPassword] = useState('');
 
     const [cookies, setCookies] = useCookies(['usuario'])
@@ -15,11 +15,11 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        if (carnet === 'adminn' && password === '12345') {
+        if (codigo === 'adminn' && password === '12345') {
             Navigate('/admin')
         }else{
             const dataJson = {
-            carnet: carnet,
+            codigo: codigo,
             password: password
             }
 
@@ -68,11 +68,11 @@ function Login() {
                     type="text"
                     className="form-control"
                     id="floatingInput"
-                    placeholder="ingrese su carnet joven"
+                    placeholder="ingrese su codigo joven"
                     onChange={(e) => setCarnet(e.target.value)}
-                    value={carnet}
+                    value={codigo}
                     />
-                    <label htmlFor="floatingInput">Carnet</label>
+                    <label htmlFor="floatingInput">codigo</label>
                 </div>
 
 
@@ -82,7 +82,7 @@ function Login() {
                     type="password"
                     className="form-control"
                     id="floatingInput"
-                    placeholder="ingrese su carnet para poder hacer login dentro de la USOCIALUSAC"
+                    placeholder="ingrese su codigo para poder hacer login dentro de la USOCIALUSAC"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     />

@@ -4,10 +4,10 @@ function deleteUser(req, res) {
     try {
 
         
-        const carnetDelete = req.body.carnet 
+        const carnetDelete = req.body.codigo 
         console.log(carnetDelete)
         
-        const usuarioIndex = list_users.findIndex(x_user => x_user.carnet.toString() === carnetDelete.toString())
+        const usuarioIndex = list_users.findIndex(x_user => x_user.codigo.toString() === carnetDelete.toString())
         console.log(usuarioIndex)
         if (usuarioIndex !== -1) {
           

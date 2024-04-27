@@ -1,30 +1,45 @@
 [
-    {
-      "carnet": "201915551",
-      "nombre": "Juan Pablo",
-      "edad": 25,
-      "facultad": "Ingeniería",
-      "password": "HolaMundo1*"
-    },
-    {
-      "carnet": "201922222",
-      "nombre": "María Fernanda",
-      "edad": 23,
-      "facultad": "Medicina",
-      "password": "AdiosMundo2@"
-    },
   {
-    "carnet": "201933333",
-    "nombre": "Luis Miguel",
-    "edad": 28,
-    "facultad": "Ciencias Económicas",
-    "password": "Secret123#"
+    "codigo": "201933333",
+    "nombres": "Lusi miguel",
+    "apellidos": "me pica",
+    "genero": "asasas",
+    "facultad": "medicina",
+    "carrera": "vali",
+    "correo": "@nmeidcinoso",
+    "contrasenia": "H123*",
+    "campoextra": "1234"
   },
   {
-    "carnet": "201933333",
-    "nombre": "Luis Miguel",
-    "edad": 28,
-    "facultad": "Ciencias Económicas",
-    "password": "Secret123#"
+    "codigo": "205933333",
+    "nombres": "Luuel",
+    "apellidos": "mica",
+    "genero": "asas",
+    "facultad": "medina",
+    "carrera": "vai",
+    "correo": "@nminoso",
+    "contrasenia": "H23*",
+    "campoextra": "1234"
+  },
+  {
+    "codigo": "205933333",
+    "nombres": "L",
+    "apellidos": "mica",
+    "genero": "asas",
+    "facultad": "medina",
+    "carrera": "vai",
+    "correo": "@nminoso",
+    "contrasenia": "H23*",
+    "campoextra": "1234"
+  },
+  {
+    "codigo": "1",
+    "nombres": "gabrel",
+    "apellidos": "gil",
+    "genero": "sexoso",
+    "facultad": "medicina",
+    "carrera": "vali",
+    "correo": "@nmeidcinoso",
+    "contrasenia": "1"
   }
 ]
