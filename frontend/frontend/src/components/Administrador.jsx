@@ -3,6 +3,8 @@ import './Styles/Styles.css'
 import { useCookies } from 'react-cookie';
 import { Modal } from "react-bootstrap";
 import NavBarAdmin from "./NavBarAdmin";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 
 
 function Administrador() {
@@ -12,6 +14,15 @@ function Administrador() {
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null)
     const [actualizarTabla, setActualizarTabla] = useState(false)
     const [selectedFile, setSelectedFile] = useState(null);
+
+    const exportarCSV=()=>{
+        const titulos=["codigo","nombres","apellidos","genero","facultad","carrera","correo","contrasenia"]
+        const csv=listaUser.map((user)=>`${user.codigo},${user.nombres},${user.apellidos},${user.genero},${user.facultad},${user.carrera},${user.correo},${user.contrasenia}`).join("\n")
+        const link=document.createElement("a")
+        link.href=URL.createObjectURL(new Blob([titulos, "\n", csv],{type:"text/csv"}))
+        link.download="Usuarios.csv"
+        link.click()
+    }
 
     useEffect(() => {
         fetch(`http://localhost:5000/GetAllUsers`, {
@@ -116,7 +127,30 @@ function Administrador() {
         <div>
             <NavBarAdmin></NavBarAdmin>
         <div className="admin-background">
+            <div 
+            style={{
+                display: "flex",
+                justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+            fontWeight: "bold",
+                
+                }}>
+        <h1>Funciones Usuarios</h1>
+        </div>
+        <div 
+            style={{
+                display: "flex",
+                justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+            fontWeight: "bold",
+                
+                }}>
+                    <button className="btn btn-dark" onClick={exportarCSV}>Exportar CSV</button>
+                </div>
         <input type="file" onChange={handleFileChange} accept=".json"/>
+        
     
         <button onClick={cargarDatos} className="btn btn-primary">Cargar Archivo JSON</button>
             <div className="centrar-tabla">
@@ -174,7 +208,7 @@ function Administrador() {
 
                 <Modal.Footer>
                     <button variant="secondary" onClick={cerrarVentanaInfo}>
-                        Cerrrar
+                        Cerrar
                     </button>
                 </Modal.Footer>
             </Modal>
