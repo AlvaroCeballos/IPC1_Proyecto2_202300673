@@ -9,11 +9,15 @@ function nuevaPublicacion(req, res) {
         const codigo = req.body.codigo
         const descripcion = req.body.descripcion
         const imagen = req.body.imagen
+        const categoria = req.body.categoria
+        
+       
+       
 
         id_publicacion = id_publicacion + 1
         console.log(id_publicacion)
 
-        const newPost = new Object_Post(id_publicacion, codigo, descripcion, imagen)
+        const newPost = new Object_Post(id_publicacion, codigo, descripcion, imagen, categoria)
         list_publicacion.push(newPost)
 
         res.json(
@@ -46,20 +50,24 @@ function getPublicaciones(req, res) {
 
             if (usuario) {
                 const post_con_usuario = {
-                    id: PublicacionObj.id,
+                    codigo: PublicacionObj.codigo,
                     descripcion: PublicacionObj.descripcion,
                     imagen: PublicacionObj.imagen,
                     fechaHora: PublicacionObj.fechaHora,
-                    user: usuario.nombres,
+                    categoria: PublicacionObj.categoria,
+                    user: usuario.nombres + " " + usuario.apellidos,
                     karrera: usuario.carrera + " (" + usuario.facultad+")"
+
+                    
                    
                 };
-
+              
+               
                 posts_con_usuario.push(post_con_usuario);
             }
         }
 
-
+       
         res.json(
             {
                 publicaciones: posts_con_usuario

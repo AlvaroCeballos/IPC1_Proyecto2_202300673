@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { useCookies } from 'react-cookie';
 import './Styles/Styles.css';
-import NavBar from './NavBar'
+import NavBar from './NavBar';
+import { Dropdown } from "react-bootstrap";
+import { Form } from "react-router-dom";
 
 function Publicacion() {
     const [cookies] = useCookies(['usuario']);
     const [datosUser, setDatosUser] = useState(cookies.usuario)
 
     const [descripcion, setDescripcion] = useState('');
+   
+    const [categoria, setCategoria] = useState('');
 
     const [imagen, setImagen] = useState('');
     const [imagenURL, setImagenURL] = useState('');
@@ -15,6 +19,12 @@ function Publicacion() {
     const handleDescripcionChange = (event) => {
         setDescripcion(event.target.value);
     };
+
+    const handleCategoriaChange = (event) => {
+        setCategoria(event.target.value);
+    };
+
+    
 
     const handleImagenChange = (event) => {
         const reader = new FileReader();
@@ -36,7 +46,9 @@ function Publicacion() {
         const dataJson = {
             codigo: datosUser.codigo,
             descripcion: descripcion,
-            imagen: imagen
+            imagen: imagen,
+            categoria: categoria
+
         }
 
         fetch(`http://localhost:5000/createPost`, {
@@ -75,6 +87,19 @@ function Publicacion() {
                         required
                     ></textarea>
                 </div>
+
+                
+                <div className="form-group">
+                    <label htmlFor="descripcion">Categoria:</label>
+                    <textarea
+                        id="categoria"
+                        value={categoria}
+                        onChange={handleCategoriaChange}
+                        rows="1"
+                        required
+                    ></textarea>
+                </div>
+
                 <div className="form-group">
                     <label htmlFor="imagen">Imagen:</label>
 

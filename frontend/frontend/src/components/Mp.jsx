@@ -30,7 +30,7 @@ function Mp(){
     }, []);
 
     function viewIdPost(postId) {
-        console.log("ID del post:", postId);
+        console.log("codigo del post:", postId);
     }
 
     return(
@@ -39,17 +39,19 @@ function Mp(){
             <div className="home-background">
                 <div className="card-container">
                     {listaObjetos.map(objeto => (
-                        <div className="card" key={objeto.id}>
+                        <div className="card" key={objeto.codigo}>
                             <div className="card-header">
                                 <p>Usuario: {objeto.user}</p>
                                 <p>Carrera: {objeto.karrera}</p>
+                                <p>Categoria: {objeto.categoria}</p>
+                                
                                 <p>Fecha: {new Date(objeto.fechaHora).toLocaleString()}</p>
                             </div>
                             <div className="card-center-img">
                                 {objeto.imagen && <img src={objeto.imagen} className="card-img" alt="..." />}
                             </div>
                             <p className="card-description">{objeto.descripcion}</p>
-                            <button onClick={() => viewIdPost(objeto.id)}>Comentarios</button>
+                            <button onClick={() => viewIdPost(objeto.codigo)}>Comentarios</button>
                         </div>
                     ))}
                 </div>

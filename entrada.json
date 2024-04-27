@@ -1,28 +1,28 @@
 [
   {
-    "codigo": "201933333",
+    "codigo": "2",
     "nombres": "Lusi miguel",
-    "apellidos": "me pica",
+    "apellidos": "perez",
     "genero": "asasas",
     "facultad": "medicina",
-    "carrera": "vali",
+    "carrera": "veterinario",
     "correo": "@nmeidcinoso",
-    "contrasenia": "H123*",
+    "contrasenia": "1",
     "campoextra": "1234"
   },
   {
-    "codigo": "205933333",
-    "nombres": "Luuel",
-    "apellidos": "mica",
+    "codigo": "3",
+    "nombres": "Michael",
+    "apellidos": "Jackson",
     "genero": "asas",
-    "facultad": "medina",
-    "carrera": "vai",
+    "facultad": "comunicacion",
+    "carrera": "derecho",
     "correo": "@nminoso",
-    "contrasenia": "H23*",
+    "contrasenia": "1",
     "campoextra": "1234"
   },
   {
-    "codigo": "205933333",
+    "codigo": "3",
     "nombres": "L",
     "apellidos": "mica",
     "genero": "asas",
@@ -34,11 +34,11 @@
   },
   {
     "codigo": "1",
-    "nombres": "gabrel",
-    "apellidos": "gil",
+    "nombres": "alvaro",
+    "apellidos": "ceballos",
     "genero": "sexoso",
-    "facultad": "medicina",
-    "carrera": "vali",
+    "facultad": "INgenieria",
+    "carrera": "Sistemas",
     "correo": "@nmeidcinoso",
     "contrasenia": "1"
   }
