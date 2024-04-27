@@ -91,13 +91,20 @@ function Publicacion() {
                 
                 <div className="form-group">
                     <label htmlFor="descripcion">Categoria:</label>
-                    <textarea
-                        id="categoria"
-                        value={categoria}
-                        onChange={handleCategoriaChange}
-                        rows="1"
-                        required
-                    ></textarea>
+
+    <select 
+    value={categoria} 
+    onChange={handleCategoriaChange}
+    required
+    >
+    <option value="Anuncio Importante">Anuncio Importante</option>
+    <option value="Divertido">Divertido</option>
+    <option value="/Académico">Académico</option>
+    <option value="Variedad">Variedad</option>
+</select>
+
+
+                    
                 </div>
 
                 <div className="form-group">
