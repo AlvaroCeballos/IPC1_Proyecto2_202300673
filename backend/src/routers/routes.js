@@ -7,7 +7,7 @@ const {hellowWorld} = require('../controllers/holamundo')
 const {SignUp, GetAllUsers, Login, CargaMasiva}=require('../controllers/accesos')
 const {UpdateUser}=require('../controllers/Update')
 const {deleteUser}=require('../controllers/Delete')
-const {nuevaPublicacion, getPublicaciones} = require('../controllers/Publicacion')
+const {nuevaPublicacion, getPublicaciones,  CargaMasivaPubli} = require('../controllers/Publicacion')
 
 //Get 
 router.get('/saludo', hellowWorld)
@@ -19,6 +19,7 @@ router.post('/registro', SignUp)
 router.post('/Login', Login)
 router.post('/createPost', nuevaPublicacion)
 router.post('/CargaMasiva', CargaMasiva)
+router.post('/CargaMasivaPubli',  CargaMasivaPubli)
 
 //Put
 router.put('/update', UpdateUser)

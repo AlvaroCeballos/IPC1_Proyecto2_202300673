@@ -4,6 +4,9 @@ import Administrador from '../Administrador';
 import Mp from '../Mp';
 import Publicacion from '../Publicacion';
 import Info from '../Info';
+import Tabla from '../Tabla';
+
+
 
 
 
@@ -24,6 +27,11 @@ function Router() {
 </Route>
 <Route path="/info" element={<Info></Info>}>
 </Route>
+<Route path="/tabla" element={<Tabla></Tabla>}>
+</Route>
+
+
+
 
 
 

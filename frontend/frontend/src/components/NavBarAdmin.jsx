@@ -19,10 +19,10 @@ function NavBarAdmin() {
             <div className="left-container-navbar">
                 <ul className="link-list">
                     <li className="link-list-item">
-                        <Link className="link" to="/menup">  Usuarios </Link>
+                        <Link className="link" to="/admin">  Usuarios </Link>
                     </li>
                     <li className="link-list-item">
-                        <Link className="link" to="/createPost">  Post </Link>
+                        <Link className="link" to="/Tabla">  Post </Link>
                     </li>
                     <li className="link-list-item">
                         <Link className="link" to="/createPost"> Top likes </Link>

@@ -2,7 +2,7 @@ const Object_Post = require('../objects/PublicacionObj')
 
 const { list_users, list_publicacion } = require('../DataList/dataList')
 
-var id_publicacion = 0
+var kontador = 0
 
 function nuevaPublicacion(req, res) {
     try{
@@ -10,14 +10,15 @@ function nuevaPublicacion(req, res) {
         const descripcion = req.body.descripcion
         const imagen = req.body.imagen
         const categoria = req.body.categoria
+        const anonimo = req.body.anonimo
         
        
        
 
-        id_publicacion = id_publicacion + 1
-        console.log(id_publicacion)
+        kontador = kontador + 1
+        console.log(kontador)
 
-        const newPost = new Object_Post(id_publicacion, codigo, descripcion, imagen, categoria)
+        const newPost = new Object_Post(kontador, codigo, descripcion, imagen, categoria, anonimo)
         list_publicacion.push(newPost)
 
         res.json(
@@ -34,6 +35,45 @@ function nuevaPublicacion(req, res) {
         )
     }
  
+}
+
+
+
+
+
+
+
+
+function CargaMasivaPubli(req, res) {
+    try {
+        const publiArray =req.body
+        console.log(publiArray)
+       
+
+        for (const usuarioCM of publiArray) {
+            const { codigo, descripcion, imagen, categoria, anonimo } = usuarioCM
+
+           
+
+        const newPost = new Object_Post(codigo, descripcion, imagen, categoria, anonimo)
+        list_publicacion.push(newPost)
+            
+        }
+         
+        res.json(
+            {
+                mensaje: "Carga masiva user exitosa",
+              
+            }
+        )
+    } catch (error) {
+        console.log(error)
+        return res.json(
+            {
+            error: "Hubo un error al hacer carga masiva user"
+             }
+        )
+    }
 }
 
 
@@ -55,6 +95,7 @@ function getPublicaciones(req, res) {
                     imagen: PublicacionObj.imagen,
                     fechaHora: PublicacionObj.fechaHora,
                     categoria: PublicacionObj.categoria,
+                    anonimo: PublicacionObj.anonimo,
                     user: usuario.nombres + " " + usuario.apellidos,
                     karrera: usuario.carrera + " (" + usuario.facultad+")"
 
@@ -86,7 +127,8 @@ function getPublicaciones(req, res) {
 
 module.exports= {
     nuevaPublicacion,
-    getPublicaciones
+    getPublicaciones,
+    CargaMasivaPubli
 }
 
 

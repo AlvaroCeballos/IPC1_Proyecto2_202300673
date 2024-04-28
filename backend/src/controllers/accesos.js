@@ -75,6 +75,22 @@ function CargaMasiva(req, res) {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function GetAllUsers(req, res) {
     try {
         res.json(
@@ -91,6 +107,14 @@ function GetAllUsers(req, res) {
         )
     }
 }
+
+
+
+
+
+
+
+
 
 function Login(req, res){
     try {

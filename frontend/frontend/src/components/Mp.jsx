@@ -11,29 +11,50 @@ function Mp(){
     const [cookies, setCookies] = useCookies(['usuario'])
     const [datosUser, setDatosUser] = useState(cookies.usuario)
     const [listaObjetos, setListaObjetos] = useState([])
+    const [anonimo, setAnonimo] = useState(false);
+
+
+
+
+
+
+
 
 
     useEffect(() => {
-
         fetch(`http://localhost:5000/getPublicaciones`, {
-            method: "GET", // Utiliza get
+            method: "GET",
             headers: {
-                "Content-Type": "application/json", // Establece el tipo de contenido de la solicitud como Json
+                "Content-Type": "application/json",
             },
         })
-            .then((response) => response.json())
-            .then((res) => {
-                setListaObjetos(res.publicaciones)
+        .then((response) => response.json())
+        .then((res) => {
+            if (anonimo) {
+                const updatedPublicaciones = res.publicaciones.map(publicacion => {
+                    return { user: 'Anónimo'};
+                });
+                setListaObjetos(updatedPublicaciones);
+            } else {
+                setListaObjetos(res.publicaciones);
+            }
+        })
+        .catch((error) => console.error(error))
+    }, [anonimo]);
 
-            })
-            .catch((error) => console.error(error))
-    }, []);
+
+//--------------------------
+
 
     function viewIdPost(postId) {
         console.log("codigo del post:", postId);
     }
 
+    
+
     return(
+
+        
         <div>
             <NavBar></NavBar>
             <div className="home-background">
@@ -44,7 +65,7 @@ function Mp(){
                                 <p>Usuario: {objeto.user}</p>
                                 <p>Carrera: {objeto.karrera}</p>
                                 <p>Categoria: {objeto.categoria}</p>
-                                
+                                <p>Anonimo: {objeto.anonimo}</p>
                                 <p>Fecha: {new Date(objeto.fechaHora).toLocaleString()}</p>
                             </div>
                             <div className="card-center-img">

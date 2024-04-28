@@ -1,0 +1,21 @@
+[
+  {
+    "codigo": "2",
+    "descripcion": "imagen momazo waos",
+    "categoria": "meme",
+    "anonimo": false
+  },
+  {
+    "codigo": "3",
+    "descripcion": "eso tilin",
+    "categoria": "meme",
+    "anonimo": true
+  },
+  
+  {
+    "codigo": "1",
+    "descripcion": "no hay clases",
+    "categoria": "informativo",
+    "anonimo": false
+  }
+]
